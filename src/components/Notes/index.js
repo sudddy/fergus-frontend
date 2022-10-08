@@ -6,7 +6,7 @@ import CloseIcon from "images/close.svg";
 
 const Notes = ({ job, setJob, setShowModal }) => {
   const [showLoader, setShowLoader] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
     setShowLoader(true);
@@ -42,10 +42,10 @@ const Notes = ({ job, setJob, setShowModal }) => {
               className="w-full h-20 px-3 py-1.5 border border-solid border-formBorder rounded"
               placeholder="Comment"
               {...register("notes", {
-                required: false,
+                required: true,
               })}
             ></textarea>
-
+              {errors.notes && errors.notes.type === "required" && <span className="mt-10 text-red-500">Comment is required</span>}
             <button
               type="submit"
               className="inline-flex justify-center px-6 py-2.5 w-full rounded-md border-2 text-white bg-sky-800 hover:text-sky-800 hover:bg-white"
