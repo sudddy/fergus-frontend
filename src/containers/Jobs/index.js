@@ -1,16 +1,21 @@
 import Modal from "components/Modal";
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "request/index";
+import {useForm} from "react-hook-form"
+import _ from "lodash";
 
 const Jobs = () => {
-  const [jobDetails, setJobDetails] = useState([]);
+  const [jobDetails, setJobDetails] = useState([]); 
+  const [filteredJobs, setFilteredJobs] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [job, setJob] = useState({});
   const [isNotes, setIsNotes] = useState(false);
+  const {register} = useForm();
 
   const getInitialProps = () => {
     axios.get("/jobs/").then((req) => {
       setJobDetails(req.data);
+      setFilteredJobs(req.data);
     });
   };
 
@@ -21,12 +26,23 @@ const Jobs = () => {
     setShowModal(true);
   };
 
+  const filterJobs = (e) => {
+    if(_.isEmpty(e.target.value)){
+      setFilteredJobs(jobDetails);
+    }
+    setFilteredJobs(_.filter(jobDetails, (filterItem) => {
+      if(_.includes(filterItem.job_name,e.target.value)){
+        return filterItem;
+      }
+    }));
+  }
+
   useEffect(() => {
     getInitialProps();
   }, [job]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center max-h-screen">
       {showModal ? (
         <Modal
           job={job}
@@ -35,7 +51,23 @@ const Jobs = () => {
           notes={isNotes}
         />
       ) : null}
-      <div class="overflow-x-auto h-full overflow-y-auto relative w-full mx-40 bg-white uppercase">
+      <div class="overflow-x-auto overflow-y-auto relative w-full mx-40 bg-white uppercase  border-black my-20">
+        <div className="sort-filter flex flex-row justify-end">
+        <div className="grid content-center"> <p className="text-blue-500 uppercase mx-4">Filter</p></div>
+        <input
+              type="text"
+              className="form-control block w-80 h-14 px-3 py-1.5 border border-solid border-formBorder rounded"
+              id="exampleInputPassword1"
+              placeholder="Job name"
+              {...register("filter", {
+                required: true,
+                onChange: (e) => { filterJobs(e)},
+              })}
+            />
+       
+        </div>
+
+
         <table class="w-full overflow-auto text-sm text-left border-collapse border-spacing-y-6">
           <thead class="text-xs text-gray-700 uppercase">
             <tr className="px-10">
@@ -63,7 +95,7 @@ const Jobs = () => {
           </thead>
 
           <tbody>
-            {jobDetails.map((item) => (
+            {filteredJobs.map((item) => (
               <Fragment>
                 <tr class="border shadow-md border-[#0c4a6e] rounded-md hover:shadow-lg">
                   <th
