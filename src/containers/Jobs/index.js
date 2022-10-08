@@ -25,7 +25,7 @@ const Jobs = () => {
 
     useEffect(() => {
         getInitialProps();
-    }, [])
+    }, [job])
 
     return (
         <div className="flex justify-center">

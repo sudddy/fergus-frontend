@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import axios from "request/index"
 import CloseIcon from "images/close.svg"
 
-const UpdateJob = ({job,setShowModal }) => {
+const UpdateJob = ({job,setJob,setShowModal }) => {
 
   const [showLoader, setShowLoader] = useState(false);
 
@@ -17,7 +17,7 @@ const UpdateJob = ({job,setShowModal }) => {
       setShowLoader(true);
       data.job._id = job._id;
       axios.put(`/jobs/`, data.job).then((req) => {
-          console.log(req.data);        
+          setJob(req.data);      
       })
       setShowLoader(false);
       setShowModal(false);

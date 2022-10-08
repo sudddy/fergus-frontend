@@ -17,7 +17,7 @@ export default function Modal({ job, setJob, setShowModal,notes }) {
               {/*body*/}
 
            { notes ? <Notes job={job} setJob={setJob} setShowModal={setShowModal} />
-            :<UpdateJob job={job} setShowModal={setShowModal} /> }
+            :<UpdateJob setJob={setJob} job={job} setShowModal={setShowModal} /> }
             
             </div>
           </div>
