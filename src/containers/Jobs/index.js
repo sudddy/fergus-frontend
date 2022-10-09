@@ -31,7 +31,7 @@ const Jobs = () => {
       setFilteredJobs(jobDetails);
     }
     setFilteredJobs(_.filter(jobDetails, (filterItem) => {
-      if(_.includes(filterItem.job_name,e.target.value)){
+      if(_.includes(_.toLower(filterItem.job_name),_.toLower(e.target.value))){
         return filterItem;
       }
     }));
