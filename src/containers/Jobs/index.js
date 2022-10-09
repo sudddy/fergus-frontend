@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import axios from "request/index";
 import {useForm} from "react-hook-form"
 import _ from "lodash";
+import EditIcon from "images/edit.svg"
 
 const Jobs = () => {
   const [jobDetails, setJobDetails] = useState([]); 
@@ -42,7 +43,7 @@ const Jobs = () => {
   }, [job]);
 
   return (
-    <div className="flex justify-center max-h-screen">
+    <div className="flex justify-center flex-col max-h-screen">
       {showModal ? (
         <Modal
           job={job}
@@ -51,8 +52,8 @@ const Jobs = () => {
           notes={isNotes}
         />
       ) : null}
-      <div class="overflow-x-auto overflow-y-auto relative w-full mx-40 bg-white uppercase  border-black my-20">
-        <div className="sort-filter flex flex-row justify-end">
+
+     <div className="sort-filter flex flex-row justify-end mt-10 pr-20">
         <div className="grid content-center"> <p className="text-blue-500 uppercase mx-4">Filter</p></div>
         <input
               type="text"
@@ -68,9 +69,12 @@ const Jobs = () => {
         </div>
 
 
+      <div class="overflow-x-auto overflow-y-auto relative w-full px-20 bg-white uppercase  border-black my-10">
+       
+
         <table class="w-full overflow-auto text-sm text-left border-collapse border-spacing-y-6">
-          <thead class="text-xs text-gray-700 uppercase">
-            <tr className="px-10">
+          <thead class="text-xs text-white  bg-blue-900 uppercase sticky top-0">
+            <tr className="px-10 bg-blue-900">
               <th scope="col" class="py-6 px-6">
                 Job Identifier
               </th>
@@ -91,9 +95,9 @@ const Jobs = () => {
               <th scope="col" class="py-6 px-6 mb-10">
                 <span class="sr-only">Edit</span>
               </th>
-            </tr>
+            </tr> 
           </thead>
-
+          <br/>
           <tbody>
             {filteredJobs.map((item) => (
               <Fragment>
@@ -126,7 +130,7 @@ const Jobs = () => {
                       }}
                       class="font-medium text-[#1e3a8a] dark:text-[#1e3a8a] hover:underline"
                     >
-                      Edit
+                      <img src={EditIcon} width="30" height="30"/>
                     </button>
                   </td>
                 </tr>
