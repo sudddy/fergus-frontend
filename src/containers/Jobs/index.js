@@ -16,7 +16,7 @@ const Jobs = () => {
   const getInitialProps = () => {
     axios.get("/jobs/").then((req) => {
       setJobDetails(req.data);
-      // setFilteredJobs(req.data);
+      setFilteredJobs(req.data);
     });
   };
 
