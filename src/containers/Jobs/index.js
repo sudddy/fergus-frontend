@@ -109,7 +109,10 @@ const Jobs = () => {
                   </th>
                   <td className="py-6 px-6">{item.job_name}</td>
                   <td className="py-6 px-6">{item.contact_details}</td>
-                  <td className="py-6 px-6">{item.status}</td>
+                  <td className="py-6 px-6">
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">{item.status}</span>
+                        
+                    </td>
                   <td className="py-6 px-6">
                     <button
                       onClick={() => {
