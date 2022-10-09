@@ -31,7 +31,7 @@ const Notes = ({ job, setJob, setShowModal }) => {
     <Fragment>
       <div className="flex flex-col p-6 w-[600px] rounded items-center overflow-auto">
         <div className="flex flex-row  w-full justify-between">
-          <h2 className="text-blue-500 uppercase">Add Notes</h2>
+          <h2 className="text-blue-900 uppercase">Add Notes</h2>
           <img src={CloseIcon} onClick={() => setShowModal(false)} />
         </div>
         <div className="flex flex-row  w-full mt-4">
@@ -48,7 +48,7 @@ const Notes = ({ job, setJob, setShowModal }) => {
               {errors.notes && errors.notes.type === "required" && <span className="mt-10 text-red-500">Comment is required</span>}
             <button
               type="submit"
-              className="inline-flex justify-center px-6 py-2.5 w-full rounded-md border-2 text-white bg-sky-800 hover:text-sky-800 hover:bg-white"
+              className="inline-flex justify-center px-6 py-2.5 w-full rounded-md border-2 text-white bg-blue-900 hover:text-blue-900 hover:bg-white"
             >
               {showLoader ? "Adding Notes.." : "Add Notes"}
             </button>
@@ -56,10 +56,10 @@ const Notes = ({ job, setJob, setShowModal }) => {
         </div>
 
         {job.notes == 0 ? (
-          <div class="flex justify-between w-full p-2 mt-4 bg-white rounded-md border shadow-md">
+          <div className="flex justify-between w-full p-2 mt-4 bg-white rounded-md border shadow-md">
             <div className="w-40">
               {" "}
-              <p class="mb-2 text-gray-900 dark:text-black">
+              <p className="mb-2 text-gray-900 dark:text-black">
                 No Notes to display
               </p>{" "}
             </div>
@@ -67,11 +67,11 @@ const Notes = ({ job, setJob, setShowModal }) => {
         ) : (
           <div className="w-full h-80 overflow-y-auto">
             {job.notes &&
-              job.notes.map((item) => (
-                <div class="flex justify-between w-full p-2 mt-4 mr-10 bg-white rounded-md border shadow-md overflow-auto">
-                  <div className="w-40">
+              job.notes.map((item,index) => (
+                <div key={index} className="flex justify-between w-full p-2 mt-4 mr-10 bg-white rounded-md border shadow-md">
+                  <div className="flex align-center w-40">
                     {" "}
-                    <p class="mb-2 text-gray-900 dark:text-black">
+                    <p className="mb-2 text-gray-900 dark:text-black">
                       {item}
                     </p>{" "}
                   </div>

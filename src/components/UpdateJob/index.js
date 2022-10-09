@@ -34,7 +34,7 @@ const UpdateJob = ({ job, setJob, setShowModal }) => {
       <div className="flex flex-col p-6 w-96  rounded items-center">
         <div className="flex flex-row  w-full justify-between">
           <h2 className="text-lg ml-2">
-            <span className="text-blue-500 uppercase">{job.job_name}</span>
+            <span className="text-blue-900 uppercase">{job.job_name}</span>
           </h2>
           <img src={CloseIcon} onClick={() => setShowModal(false)} />
         </div>
@@ -81,7 +81,7 @@ const UpdateJob = ({ job, setJob, setShowModal }) => {
           </div>
           <button
             type="submit"
-            className="inline-flex justify-center px-6 py-2.5  w-80 rounded-md border-2 text-white bg-sky-800 hover:text-sky-800 hover:bg-white"
+            className="inline-flex justify-center px-6 py-2.5  w-80 rounded-md border-2 text-white bg-blue-900 hover:text-blue-900 hover:bg-white"
           >
             Update
           </button>
